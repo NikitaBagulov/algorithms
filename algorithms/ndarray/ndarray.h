@@ -5,7 +5,7 @@
 
 template<class T>
 class NDArray {
-public:
+private:
 	int rows;
 	int columns;
 	T** ndarray;
@@ -30,7 +30,7 @@ public:
 };	
 	
 	template<class T>
-	NDArray::NDArray(int _rows=1, int _columns=1) { 
+	NDArray<T>::NDArray(int _rows=1, int _columns=1) { 
 		rows = _rows;
 		columns = _columns;
 		ndarray = new T*[columns];
@@ -39,10 +39,10 @@ public:
 		}
 	}
 	template<class T>
-	NDArray::~NDArray() {};
+	NDArray<T>::~NDArray() {};
 
 	template<class T>
-	void NDArray::null() {
+	void NDArray<T>::null() {
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j < columns;j++) {
@@ -52,7 +52,7 @@ public:
 	}
 
 	template<class T>
-	void NDArray::ones() {
+	void NDArray<T>::ones() {
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j <columns;j++) {
@@ -62,12 +62,12 @@ public:
 	}
 
 	template<class T>
-	void NDArray::random() {
+	void NDArray<T>::random() {
 		srand((unsigned)time(0));
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j < columns;j++) {
-				ndarray[i][j] = rand()%rows+columns+1;
+				ndarray[i][j] = rand();
 			}
 		}
 	}
