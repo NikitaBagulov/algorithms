@@ -14,7 +14,7 @@ public:
 	~NDArray();
 	void null();
 	void ones();
-	void random();
+	void randoms();
 	T* operator [](const int& i) const;
 	NDArray operator =(const NDArray& _ndarray) const;
 	NDArray operator +=(const T& number) const;
@@ -62,7 +62,7 @@ public:
 	}
 
 	template<class T>
-	void NDArray<T>::random() {
+	void NDArray<T>::randoms() {
 		srand((unsigned)time(0));
 		for (int i = 0; i < rows;i++)
 		{
