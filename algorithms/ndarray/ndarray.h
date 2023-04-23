@@ -3,14 +3,34 @@
 #include <time.h>
 
 
-template<typename T>
+template<class T>
 class NDArray {
 public:
 	int rows;
 	int columns;
 	T** ndarray;
 public:
-	NDArray(int _rows=1, int _columns=1) { 
+	NDArray(int _rows=1, int _columns=1);
+	~NDArray();
+	void null();
+	void ones();
+	void random();
+	T* operator [](const int& i) const;
+	NDArray operator =(const NDArray& _ndarray) const;
+	NDArray operator +=(const T& number) const;
+	NDArray operator -=(const T& number) const;
+	NDArray operator *=(const T& number) const;
+	NDArray operator /=(const T& number) const;
+	T min();
+	T* min(int shape);
+	T max();
+	T* max(int shape);
+	float mean();
+	float* mean(int shape);
+	
+	
+	template<class T>
+	NDArray::NDArray(int _rows=1, int _columns=1) { 
 		rows = _rows;
 		columns = _columns;
 		ndarray = new T*[columns];
@@ -18,9 +38,11 @@ public:
 			ndarray[i] = new T[columns];
 		}
 	}
-	~NDArray() {};
+	template<class T>
+	NDArray::~NDArray() {};
 
-	void null() {
+	template<class T>
+	void NDArray::null() {
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j < columns;j++) {
@@ -29,7 +51,8 @@ public:
 		}
 	}
 
-	void ones() {
+	template<class T>
+	void NDArray::ones() {
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j <columns;j++) {
@@ -38,7 +61,8 @@ public:
 		}
 	}
 
-	void random() {
+	template<class T>
+	void NDArray::random() {
 		srand((unsigned)time(0));
 		for (int i = 0; i < rows;i++)
 		{
@@ -48,38 +72,44 @@ public:
 		}
 	}
 
-	T* operator [](const int& i) const {
+	template<class T>
+	T* NDArray<T>::operator [](const int& i) const {
 		return ndarray[i]; 
 	}
-	NDArray operator =(const NDArray& _ndarray) const {
+	template<class T>
+	NDArray<T> NDArray<T>::operator =(const NDArray& _ndarray) const {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				ndarray[i][j] = _ndarray[i][j];
 			}
 		}
 	}
-	NDArray operator +=(const T& number) const {
+	template<class T>
+	NDArray<T> NDArray<T>::operator +=(const T& number) const {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				ndarray[i][j] += number;
 			}
 		}
 	}
-	NDArray operator -=(const T& number) const {
+	template<class T>
+	NDArray<T> NDArray<T>::operator -=(const T& number) const {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				ndarray[i][j] -= number;
 			}
 		}
 	}
-	NDArray operator *=(const T& number) const {
+	template<class T>
+	NDArray<T> NDArray<T>::operator *=(const T& number) const {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				ndarray[i][j] *= number;
 			}
 		}
 	}
-	NDArray operator /=(const T& number) const {
+	template<class T>
+	NDArray<T> NDArray<T>::operator /=(const T& number) const {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
 				ndarray[i][j] /= number;
@@ -89,7 +119,8 @@ public:
 
 
 
-	T min() {
+	template<class T>
+	T NDArray<T>::min() {
 		T min = ndarray[0][0];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
@@ -98,7 +129,8 @@ public:
 		}
 	}
 
-	T* min(int shape) {
+	template<class T>
+	T* NDArray<T>::min(int shape) {
 		if (shape == 0) {
 			T* min = new T[rows];
 			for (int i = 0; i < rows; i++) {
@@ -121,7 +153,8 @@ public:
 		}
 	}
 	
-	T max() {
+	template<class T>
+	T NDArray<T>::max() {
 		T max = ndarray[0][0];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
@@ -130,7 +163,8 @@ public:
 		}
 		return max;
 	}
-	T* max(int shape) {
+	template<class T>
+	T* NDArray<T>::max(int shape) {
 		if (shape == 0) {
 			T* max = new T[rows];
 			for (int i = 0; i < rows; i++) {
@@ -153,7 +187,8 @@ public:
 		}
 	}
 
-	float mean() {
+	template<class T>
+	float NDArray<T>::mean() {
 		int sum = 0;
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
@@ -162,7 +197,8 @@ public:
 		}
 		return sum / (float)(columns) / (float)(rows);
 	}
-	float* mean(int shape) {
+	template<class T>
+	float* NDArray<T>::mean(int shape) {
 		if (shape == 0) {
 			float* sum = new float[rows];
 			for (int i = 0; i < rows; i++) {
