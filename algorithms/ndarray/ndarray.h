@@ -136,7 +136,7 @@ public:
 			for (int i = 0; i < rows; i++) {
 				min[i] = arr[i][0];
 				for (int j = 0; j < columns; j++) {
-					min[i] = arr[i][j] < min[i] ? ndarray[i][j] : min[i];
+					min[i] = ndarray[i][j] < min[i] ? ndarray[i][j] : min[i];
 				}
 			}
 			return min;
@@ -158,7 +158,7 @@ public:
 		T max = ndarray[0][0];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				max = arr[i][j] > max ? max = arr[i][j] : max;
+				max = ndarray[i][j] > max ? max = ndarray[i][j] : max;
 			}
 		}
 		return max;
@@ -170,7 +170,7 @@ public:
 			for (int i = 0; i < rows; i++) {
 				max[i] = ndarray[i][0];
 				for (int j = 0; j < columns; j++) {
-					max[i] = ndarray[i][j] > max[i] ? arr[i][j] : max[i];
+					max[i] = ndarray[i][j] > max[i] ? ndarray[i][j] : max[i];
 				}
 			}
 			return max;
@@ -180,7 +180,7 @@ public:
 			for (int i = 0; i < columns; i++) {
 				max[i] = ndarray[0][i];
 				for (int j = 0; j < rows; j++) {
-					max[i] = arr[j][i] > max[i] ? ndarray[j][i] : max[i];
+					max[i] = ndarray[j][i] > max[i] ? ndarray[j][i] : max[i];
 				}
 			}
 			return max;
