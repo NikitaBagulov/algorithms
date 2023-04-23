@@ -27,7 +27,7 @@ public:
 	T* max(int shape);
 	float mean();
 	float* mean(int shape);
-	
+};	
 	
 	template<class T>
 	NDArray::NDArray(int _rows=1, int _columns=1) { 
@@ -226,4 +226,4 @@ public:
 
 
 
-};
+
