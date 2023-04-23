@@ -1,4 +1,4 @@
-#include "NDArray.h"
+#include "ndarray.h"
 #include <iostream>
 
 int main() {
