@@ -63,7 +63,7 @@ public:
 
 	template<class T>
 	void NDArray<T>::randoms() {
-		srand((unsigned)time(0));
+		srand(time(NULL));
 		for (int i = 0; i < rows;i++)
 		{
 			for (int j = 0;j < columns;j++) {
