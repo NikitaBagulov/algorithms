@@ -18,7 +18,7 @@ main.o: main.cpp
 	$(CC) -c main.cpp
 
 run: all
-	$(TARGET)
+	./$(TARGET)
 
 clean:
 	$(RM) $(TARGET)
