@@ -5,7 +5,8 @@ int main() {
 	NDArray<int> arr(5, 5);
 	arr.null();
 	arr.ones();
-	arr.random();
+	arr.randoms();
+	arr.mean();
 
 
 }
