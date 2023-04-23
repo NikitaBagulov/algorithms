@@ -10,7 +10,7 @@ private:
 	int columns;
 	T** ndarray;
 public:
-	NDArray(int _rows=1, int _columns=1);
+	NDArray(int _rows, int _columns);
 	~NDArray();
 	void null();
 	void ones();
@@ -30,7 +30,7 @@ public:
 };	
 	
 	template<class T>
-	NDArray<T>::NDArray(int _rows=1, int _columns=1) { 
+	NDArray<T>::NDArray(int _rows, int _columns) { 
 		rows = _rows;
 		columns = _columns;
 		ndarray = new T*[columns];
@@ -134,7 +134,7 @@ public:
 		if (shape == 0) {
 			T* min = new T[rows];
 			for (int i = 0; i < rows; i++) {
-				min[i] = arr[i][0];
+				min[i] = ndarray[i][0];
 				for (int j = 0; j < columns; j++) {
 					min[i] = ndarray[i][j] < min[i] ? ndarray[i][j] : min[i];
 				}
