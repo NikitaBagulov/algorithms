@@ -1,4 +1,4 @@
 TARGET = main.py
 
 run:
-python ./$(TARGET)
+  python ./$(TARGET)
