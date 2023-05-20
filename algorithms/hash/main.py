@@ -21,16 +21,16 @@ def pjw_hash(key: str) -> int:
             h = h ^ g
     return h
 
-def buz_hash(key: str) -> int:
+def buz_hash(ki: str) -> int:
+    R = {}
+    for i, c in enumerate(ki):
+        R[c] = i
     h = 0
-    R = dict()
-    for ki in key:
-        high_order = h & 0x80000000
+    for c in ki:
+        highorder = h & 0x80000000
         h = h << 1
-        h = h ^ (high_order >> 31)
-        if not (ki in R):
-            R[ki] = random.randint(0, 0xFFFFFFFF)
-        h = h ^ R[ki]
+        h = h ^ (highorder >> 31)
+        h = h ^ R[c]
     return h
 
 def find_duplicates(files: list[str], hash_function: callable) -> list[str]:
