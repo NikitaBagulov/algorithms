@@ -35,7 +35,7 @@ def buz_hash(ki: str) -> int:
 
 def find_duplicates(files: list[str], hash_function: callable) -> list[str]:
     duplicates = []
-    processed_hashes = []
+    processed_hashes = {}
     for file in files:
         with open(file, 'r') as f:
             content = f.read()
@@ -43,7 +43,7 @@ def find_duplicates(files: list[str], hash_function: callable) -> list[str]:
             if hashed_content in processed_hashes:
                 duplicates.append(file)
             else:
-                processed_hashes.append(hashed_content)
+                processed_hashes[hashed_content] = file
     return duplicates
 
 if __name__ == '__main__':
